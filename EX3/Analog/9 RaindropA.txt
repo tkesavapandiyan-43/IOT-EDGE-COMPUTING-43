@@ -1,0 +1,24 @@
+const int rainPin = A0;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int rainValue = analogRead(rainPin);
+
+  Serial.print("Rain Value: ");
+  Serial.println(rainValue);
+
+  if (rainValue < 500) {     // Wet surface (adjust threshold if needed)
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Rain Detected!");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("No Rain");
+  }
+
+  delay(100);
+}

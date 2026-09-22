@@ -1,0 +1,22 @@
+const int rainPin = 2;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(rainPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int rainState = digitalRead(rainPin);
+
+  if (rainState == LOW) {      // Rain detected (common modules)
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Rain Detected!");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("No Rain");
+  }
+
+  delay(100);
+}

@@ -1,0 +1,22 @@
+const int coPin = 2;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(coPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int coState = digitalRead(coPin);
+
+  if (coState == LOW) {      // CO detected (common MQ modules)
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Carbon Monoxide Detected!");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("Air Safe");
+  }
+
+  delay(100);
+}

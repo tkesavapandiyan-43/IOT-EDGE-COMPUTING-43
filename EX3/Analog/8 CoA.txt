@@ -1,0 +1,24 @@
+const int coPin = A0;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int coValue = analogRead(coPin);
+
+  Serial.print("CO Value: ");
+  Serial.println(coValue);
+
+  if (coValue > 400) {    // Adjust threshold after calibration
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Carbon Monoxide Detected!");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("Air Safe");
+  }
+
+  delay(100);
+}

@@ -1,0 +1,24 @@
+const int waterPin = A0;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int waterValue = analogRead(waterPin);
+
+  Serial.print("Water Level: ");
+  Serial.println(waterValue);
+
+  if (waterValue > 300) {      // Water detected (adjust threshold if needed)
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Water Detected");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("No Water");
+  }
+
+  delay(100);
+}

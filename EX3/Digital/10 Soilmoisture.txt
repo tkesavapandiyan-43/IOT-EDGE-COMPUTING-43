@@ -1,0 +1,22 @@
+const int soilPin = 2;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(soilPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int soilState = digitalRead(soilPin);
+
+  if (soilState == LOW) {      // Soil is Dry (common modules)
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Soil is Dry");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("Soil is Wet");
+  }
+
+  delay(100);
+}

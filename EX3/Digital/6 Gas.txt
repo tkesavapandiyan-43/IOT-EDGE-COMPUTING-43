@@ -1,0 +1,22 @@
+const int gasPin = 2;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(gasPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int gasState = digitalRead(gasPin);
+
+  if (gasState == LOW) {     // Gas detected (common MQ modules)
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Gas Detected!");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("No Gas");
+  }
+
+  delay(100);
+}

@@ -1,0 +1,22 @@
+const int airPin = 2;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(airPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int airState = digitalRead(airPin);
+
+  if (airState == LOW) {     // Poor air quality detected
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Poor Air Quality!");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("Air Quality Normal");
+  }
+
+  delay(100);
+}

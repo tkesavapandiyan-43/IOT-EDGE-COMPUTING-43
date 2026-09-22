@@ -1,0 +1,24 @@
+const int soilPin = A0;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int soilValue = analogRead(soilPin);
+
+  Serial.print("Soil Moisture Value: ");
+  Serial.println(soilValue);
+
+  if (soilValue > 500) {      // Dry soil (adjust threshold as needed)
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Soil is Dry");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("Soil is Wet");
+  }
+
+  delay(100);
+}

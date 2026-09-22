@@ -1,0 +1,22 @@
+const int vibrationPin = A0;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int vibrationValue = analogRead(vibrationPin);
+
+  Serial.print("Vibration Value: ");
+  Serial.println(vibrationValue);
+
+  if (vibrationValue > 500) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(100);
+}

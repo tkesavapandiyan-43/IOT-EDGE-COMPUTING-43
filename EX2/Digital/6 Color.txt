@@ -1,0 +1,58 @@
+const int S0 = 4;
+const int S1 = 5;
+const int S2 = 6;
+const int S3 = 7;
+const int sensorOut = 8;
+const int ledPin = 13;
+
+int redFreq, greenFreq, blueFreq;
+
+void setup() {
+  pinMode(S0, OUTPUT);
+  pinMode(S1, OUTPUT);
+  pinMode(S2, OUTPUT);
+  pinMode(S3, OUTPUT);
+  pinMode(sensorOut, INPUT);
+  pinMode(ledPin, OUTPUT);
+
+  // Set frequency scaling to 20%
+  digitalWrite(S0, HIGH);
+  digitalWrite(S1, LOW);
+
+  Serial.begin(9600);
+}
+
+void loop() {
+
+  // Read Red
+  digitalWrite(S2, LOW);
+  digitalWrite(S3, LOW);
+  redFreq = pulseIn(sensorOut, LOW);
+
+  // Read Green
+  digitalWrite(S2, HIGH);
+  digitalWrite(S3, HIGH);
+  greenFreq = pulseIn(sensorOut, LOW);
+
+  // Read Blue
+  digitalWrite(S2, LOW);
+  digitalWrite(S3, HIGH);
+  blueFreq = pulseIn(sensorOut, LOW);
+
+  Serial.print("Red: ");
+  Serial.print(redFreq);
+  Serial.print("  Green: ");
+  Serial.print(greenFreq);
+  Serial.print("  Blue: ");
+  Serial.println(blueFreq);
+
+  // Example: Turn LED ON if red is dominant
+  if (redFreq < greenFreq && redFreq < blueFreq) {
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Red Color Detected");
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(500);
+}

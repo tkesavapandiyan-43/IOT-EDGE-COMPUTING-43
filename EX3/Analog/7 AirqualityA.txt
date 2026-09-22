@@ -1,0 +1,24 @@
+const int airPin = A0;
+const int ledPin = 13;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int airValue = analogRead(airPin);
+
+  Serial.print("Air Quality Value: ");
+  Serial.println(airValue);
+
+  if (airValue > 400) {   // Adjust threshold based on calibration
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Poor Air Quality!");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("Air Quality Normal");
+  }
+
+  delay(100);
+}

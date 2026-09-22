@@ -1,0 +1,22 @@
+const int ldrPin = 2;     // Digital Output (DO) of LDR module
+const int ledPin = 13;    // LED pin
+
+void setup() {
+  pinMode(ldrPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int ldrState = digitalRead(ldrPin);
+
+  if (ldrState == LOW) {        // Dark detected (common for LM393 modules)
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Dark Detected");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("Bright Light");
+  }
+
+  delay(100);
+}
