@@ -1,0 +1,32 @@
+EXPERIMENT: Traffic Light
+
+#define RED 7
+#define YELLOW 8
+#define GREEN 9
+
+void setup() {
+  pinMode(RED, OUTPUT);
+  pinMode(YELLOW, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+}
+
+void loop() {
+
+  // Red
+  digitalWrite(RED, HIGH);
+  digitalWrite(YELLOW, LOW);
+  digitalWrite(GREEN, LOW);
+  delay(5000);
+
+  // Yellow
+  digitalWrite(RED, LOW);
+  digitalWrite(YELLOW, HIGH);
+  digitalWrite(GREEN, LOW);
+  delay(2000);
+
+  // Green
+  digitalWrite(RED, LOW);
+  digitalWrite(YELLOW, LOW);
+  digitalWrite(GREEN, HIGH);
+  delay(5000);
+}
